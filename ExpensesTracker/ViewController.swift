@@ -27,12 +27,19 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
     }
 
-
-
-
     // MARK: - Navigation
     
     @IBAction func unwindToMainScene(sender: UIStoryboardSegue) {
+        if let c = sender.source as? NewExpenseViewController {
+
+            guard let value = Double(c.expenseTextField.text!) else {return}
+            let date = c.datePicker.date
+            let description = c.descriptionTextField.text ?? ""
+            let kind = 0 //todo implement different kinds
+            let expense = Expense(value: value, date: date, kind: kind, description: description)
+            expenses.append(expense)
+            saveExpenses()
+        }
     }
 
     private func saveExpenses() {

@@ -13,25 +13,29 @@ class Expense: NSObject, NSCoding {
     let value: Double
     let date: Date?
     let kind: Int
-    let note:String?
-    
-    init(value: Double, date: Date?, kind: Int, note:String?) {
+    let descr:String?
+
+    init(value: Double, date: Date?, kind: Int, description: String?) {
         self.value = value
         self.date = date
         self.kind = kind
-        self.note = note
+        self.descr = description
     }
     
     func encode(with aCoder: NSCoder) {
+        aCoder.encode(value, forKey: Keys.value)
+        aCoder.encode(date, forKey: Keys.date)
+        aCoder.encode(kind, forKey: Keys.kind)
+        aCoder.encode(descr, forKey: Keys.descr)
     }
     
     required convenience init?(coder: NSCoder) {
         let value = coder.decodeDouble(forKey: Keys.value)
         let date = coder.decodeObject(forKey: Keys.date) as? Date
         let kind = coder.decodeInteger(forKey: Keys.kind)
-        let note = coder.decodeObject(forKey: Keys.note) as? String
+        let description = coder.decodeObject(forKey: Keys.descr) as? String
 
-        self.init(value:value, date: date, kind: kind, note: note)
+        self.init(value:value, date: date, kind: kind, description: description)
     }
 
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -41,6 +45,6 @@ class Expense: NSObject, NSCoding {
         static let value = "value"
         static let date = "date"
         static let kind = "kind"
-        static let note = "note"
+        static let descr = "descr"
     }
 }

@@ -10,8 +10,11 @@ import UIKit
 
 class NewExpenseViewController: UIViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
+
     @IBOutlet weak var expenseTextField: UITextField!
-    
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var descriptionTextField: UITextField!
+
     override func viewDidLoad() {
         
         super.viewDidLoad()

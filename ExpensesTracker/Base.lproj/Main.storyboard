@@ -109,6 +109,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="datePicker" destination="0CQ-9r-nig" id="z7b-uH-Stg"/>
+                        <outlet property="descriptionTextField" destination="y2W-yU-C2K" id="1od-7S-Nmj"/>
                         <outlet property="expenseTextField" destination="UIc-NR-pWy" id="XSN-SF-dYU"/>
                         <outlet property="saveButton" destination="Uj5-Aa-1vh" id="D5F-2i-OiT"/>
                     </connections>
