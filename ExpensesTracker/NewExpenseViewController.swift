@@ -15,7 +15,7 @@ class NewExpenseViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextField: UITextField!
 
-    private var kind: Int!
+    var kind: Int!
 
     private var expense: Expense?
 

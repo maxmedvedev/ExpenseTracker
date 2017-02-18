@@ -53,7 +53,7 @@ class ViewController: UIViewController {
             }
             let date = c.datePicker.date
             let description = c.descriptionTextField.text ?? ""
-            let kind = 0 //todo implement different kinds
+            let kind = c.kind!
             let expense = Expense(value: value, date: date, kind: kind, description: description)
             expenses.append(expense)
             saveExpenses()
@@ -72,11 +72,11 @@ class ViewController: UIViewController {
         }
 
         switch button {
-        case foodButton: dest.setKind(ExpenseKind.food)
-        case cafeButton: dest.setKind(ExpenseKind.cafe)
-        case sportsButton: dest.setKind(ExpenseKind.sports)
-        case transportButton: dest.setKind(ExpenseKind.transport)
-        case medicineButton: dest.setKind(ExpenseKind.medicine)
+        case foodButton: dest.kind = ExpenseKind.food
+        case cafeButton: dest.kind = ExpenseKind.cafe
+        case sportsButton: dest.kind = ExpenseKind.sports
+        case transportButton: dest.kind = ExpenseKind.transport
+        case medicineButton: dest.kind = ExpenseKind.medicine
         default: fatalError("unknown kind")
         }
     }
