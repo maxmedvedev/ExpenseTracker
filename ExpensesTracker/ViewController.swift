@@ -48,7 +48,10 @@ class ViewController: UIViewController {
     @IBAction func unwindToMainScene(sender: UIStoryboardSegue) {
         if let c = sender.source as? NewExpenseViewController {
 
-            guard let value = Double(c.expenseTextField.text!) else {
+            let formatter = NumberFormatter()
+            formatter.decimalSeparator = ","
+            let text = c.expenseTextField.text!
+            guard let value = formatter.number(from: text)?.doubleValue else {
                 return
             }
             let date = c.datePicker.date
