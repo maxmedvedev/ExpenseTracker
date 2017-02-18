@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		40505453E0738249483FCF92 /* PieLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4050570F800141DADE2BF5C4 /* PieLayer.swift */; };
+		405059A0270FAA6A6EB3FA4D /* ExpenseKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4050585C6E5EC1EF21E953F3 /* ExpenseKind.swift */; };
 		A216304B1E224ED400CD1B62 /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A216304A1E224ED400CD1B62 /* NewExpenseViewController.swift */; };
 		A260958E1E3CEC5900F349FE /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260958D1E3CEC5900F349FE /* Expense.swift */; };
 		A27D0F811E0D9DA7008AC032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27D0F801E0D9DA7008AC032 /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		4050570F800141DADE2BF5C4 /* PieLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieLayer.swift; sourceTree = "<group>"; };
+		4050585C6E5EC1EF21E953F3 /* ExpenseKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseKind.swift; sourceTree = "<group>"; };
 		A216304A1E224ED400CD1B62 /* NewExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
 		A260958D1E3CEC5900F349FE /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		A27D0F7D1E0D9DA7008AC032 /* ExpensesTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpensesTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +74,7 @@
 				4050570F800141DADE2BF5C4 /* PieLayer.swift */,
 				A216304A1E224ED400CD1B62 /* NewExpenseViewController.swift */,
 				A260958D1E3CEC5900F349FE /* Expense.swift */,
+				4050585C6E5EC1EF21E953F3 /* ExpenseKind.swift */,
 			);
 			path = ExpensesTracker;
 			sourceTree = "<group>";
@@ -108,6 +111,7 @@
 				TargetAttributes = {
 					A27D0F7C1E0D9DA7008AC032 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = V2R375VJAP;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -154,6 +158,7 @@
 				A216304B1E224ED400CD1B62 /* NewExpenseViewController.swift in Sources */,
 				A29334431E0FB47A00ECEA12 /* Chart.swift in Sources */,
 				40505453E0738249483FCF92 /* PieLayer.swift in Sources */,
+				405059A0270FAA6A6EB3FA4D /* ExpenseKind.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +283,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V2R375VJAP;
 				INFOPLIST_FILE = ExpensesTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = medvedev.ExpensesTracker;
@@ -290,6 +296,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V2R375VJAP;
 				INFOPLIST_FILE = ExpensesTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = medvedev.ExpensesTracker;

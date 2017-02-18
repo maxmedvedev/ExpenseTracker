@@ -15,6 +15,10 @@ class NewExpenseViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextField: UITextField!
 
+    private var kind: Int!
+
+    private var expense: Expense?
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -41,5 +45,9 @@ class NewExpenseViewController: UIViewController {
     
     @IBAction func save(_ sender: Any) {
         
+    }
+
+    func setKind(_ kind: Int) {
+        self.kind = kind
     }
 }
