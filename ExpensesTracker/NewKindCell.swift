@@ -27,5 +27,6 @@ class NewKindCell: UITableViewCell {
         table.endUpdates()
         
         textField.text = ""
+        textField.resignFirstResponder()
     }
 }
