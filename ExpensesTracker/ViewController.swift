@@ -48,6 +48,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return expenses.reduce(0) { result, expense in result + expense.value }.description
     }
 
+    var pressCounter = 0
+
+    // MARK: - Actions
+    @IBAction func editTable(_ sender: UILongPressGestureRecognizer?) {
+        if (sender?.state == .began) {
+            kindTableView.setEditing(!kindTableView.isEditing, animated: true)
+        }
+    }
+  
     // MARK: - Navigation
 
     @IBAction func unwindToMainScene(sender: UIStoryboardSegue) {
@@ -84,7 +93,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     private func updateExpenses() {
         totalLabel.text = getTotal()
-        let rows = kindTableView.numberOfRows(inSection: 0)
+        let rows = max(0, kindTableView.numberOfRows(inSection: 0) - 1)
         for i in 0..<rows {
             (kindTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? ExpenseKindCell)?.updateTotal(expenses)
         }
@@ -110,26 +119,54 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBAction func clearExpenses(_ sender: Any) {
         expenses.removeAll()
+        kinds.removeAll()
+        kinds.append(contentsOf: ExpenseKind.getDefaultKinds())
         save()
+        kindTableView.reloadData()
         updateExpenses()
     }
 
-    //Mark: table
+    // MARK: - table
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return kinds.count
+        return kinds.count + 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseKindCell", for: indexPath) as? ExpenseKindCell else {fatalError()}
+        if indexPath.row == kinds.count {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewKindCell", for: indexPath) as? NewKindCell else {
+                fatalError()
+            }
+            
+            cell.viewController = self
 
-        cell.initData(kinds[indexPath.row], expenses)
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseKindCell", for: indexPath) as? ExpenseKindCell else {
+                fatalError()
+            }
 
-        return cell
+            cell.initData(kinds[indexPath.row], expenses)
+
+            return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row != kinds.count
+    }
+
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            kinds.remove(at: indexPath.row)
+            save()
+            kindTableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 
 }

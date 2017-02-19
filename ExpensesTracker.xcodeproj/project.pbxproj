@@ -11,6 +11,7 @@
 		405059A0270FAA6A6EB3FA4D /* ExpenseKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4050585C6E5EC1EF21E953F3 /* ExpenseKind.swift */; };
 		A216304B1E224ED400CD1B62 /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A216304A1E224ED400CD1B62 /* NewExpenseViewController.swift */; };
 		A260958E1E3CEC5900F349FE /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260958D1E3CEC5900F349FE /* Expense.swift */; };
+		A26B210F1E5A2AF6006DC08C /* NewKindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B210E1E5A2AF6006DC08C /* NewKindCell.swift */; };
 		A27D0F811E0D9DA7008AC032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27D0F801E0D9DA7008AC032 /* AppDelegate.swift */; };
 		A27D0F831E0D9DA7008AC032 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27D0F821E0D9DA7008AC032 /* ViewController.swift */; };
 		A27D0F861E0D9DA7008AC032 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A27D0F841E0D9DA7008AC032 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		4050585C6E5EC1EF21E953F3 /* ExpenseKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseKind.swift; sourceTree = "<group>"; };
 		A216304A1E224ED400CD1B62 /* NewExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
 		A260958D1E3CEC5900F349FE /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		A26B210E1E5A2AF6006DC08C /* NewKindCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewKindCell.swift; sourceTree = "<group>"; };
 		A27D0F7D1E0D9DA7008AC032 /* ExpensesTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpensesTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27D0F801E0D9DA7008AC032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A27D0F821E0D9DA7008AC032 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				A216304A1E224ED400CD1B62 /* NewExpenseViewController.swift */,
 				A260958D1E3CEC5900F349FE /* Expense.swift */,
 				4050585C6E5EC1EF21E953F3 /* ExpenseKind.swift */,
+				A26B210E1E5A2AF6006DC08C /* NewKindCell.swift */,
 				4050524EFBE1C23C590E5629 /* ExpenseKindCell.swift */,
 			);
 			path = ExpensesTracker;
@@ -153,6 +156,7 @@
 				A27D0F831E0D9DA7008AC032 /* ViewController.swift in Sources */,
 				A27D0F811E0D9DA7008AC032 /* AppDelegate.swift in Sources */,
 				A216304B1E224ED400CD1B62 /* NewExpenseViewController.swift in Sources */,
+				A26B210F1E5A2AF6006DC08C /* NewKindCell.swift in Sources */,
 				405059A0270FAA6A6EB3FA4D /* ExpenseKind.swift in Sources */,
 				40505191614FD4097B17F79E /* ExpenseKindCell.swift in Sources */,
 			);
