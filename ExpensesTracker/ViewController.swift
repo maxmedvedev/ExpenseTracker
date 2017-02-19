@@ -53,7 +53,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - Actions
     @IBAction func editTable(_ sender: UILongPressGestureRecognizer?) {
         if (sender?.state == .began) {
-            kindTableView.setEditing(!kindTableView.isEditing, animated: true)
+            let isEditing = kindTableView.isEditing
+            kindTableView.setEditing(!isEditing, animated: true)
+            kindTableView.beginUpdates()
+            let paths = [IndexPath(row: kinds.count, section: 0)]
+            if (isEditing) {
+                kindTableView.insertRows(at: paths, with: .automatic)
+
+            } else {
+                kindTableView.deleteRows(at: paths, with: .automatic)
+            }
+            kindTableView.endUpdates()
         }
     }
   
@@ -93,7 +103,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     private func updateExpenses() {
         totalLabel.text = getTotal()
-        let rows = max(0, kindTableView.numberOfRows(inSection: 0) - 1)
+        let rows = kinds.count
         for i in 0..<rows {
             (kindTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? ExpenseKindCell)?.updateTotal(expenses)
         }
@@ -133,7 +143,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return kinds.count + 1
+        return kindTableView.isEditing ? kinds.count : kinds.count + 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
