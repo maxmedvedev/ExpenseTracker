@@ -10,29 +10,34 @@ import UIKit
 import QuartzCore
 import os.log
 
-class ViewController: UIViewController {
-
-    @IBOutlet weak var foodButton: UIButton!
-    @IBOutlet weak var cafeButton: UIButton!
-    @IBOutlet weak var sportsButton: UIButton!
-    @IBOutlet weak var transportButton: UIButton!
-    @IBOutlet weak var medicineButton: UIButton!
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var totalLabel: UILabel!
     
+    @IBOutlet weak var kindTableView: UITableView!
+    
     var expenses = [Expense]()
-
+    var kinds = [ExpenseKind]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        guard let loaded: [Expense] = loadExpenses() else {
+        guard let loadedExpenses: [Expense] = loadExpenses() else {
             return
         }
-        expenses.append(contentsOf: loaded)
+        expenses.append(contentsOf: loadedExpenses)
 
-        updateTotalLabel()
+        let loadedKinds: [ExpenseKind] = loadExpenseKinds() ?? ExpenseKind.getDefaultKinds()
+
+        if (!loadedKinds.isEmpty) {
+            kinds.append(contentsOf: loadedKinds)
+        }
+
+        updateExpenses()
+
+        kindTableView.delegate = self
+        kindTableView.dataSource = self
     }
 
     override func viewDidLayoutSubviews() {
@@ -59,8 +64,8 @@ class ViewController: UIViewController {
             let kind = c.kind!
             let expense = Expense(value: value, date: date, kind: kind, description: description)
             expenses.append(expense)
-            saveExpenses()
-            updateTotalLabel()
+            save()
+            updateExpenses()
         }
     }
 
@@ -70,26 +75,24 @@ class ViewController: UIViewController {
         guard let dest = (segue.destination as? UINavigationController)?.visibleViewController as? NewExpenseViewController else {
             return
         }
-        guard let button = sender as? UIButton else {
+        guard let button = sender as? ExpenseKindButton else {
             return
         }
 
-        switch button {
-        case foodButton: dest.kind = ExpenseKind.food
-        case cafeButton: dest.kind = ExpenseKind.cafe
-        case sportsButton: dest.kind = ExpenseKind.sports
-        case transportButton: dest.kind = ExpenseKind.transport
-        case medicineButton: dest.kind = ExpenseKind.medicine
-        default: fatalError("unknown kind")
+        dest.kind = button.kind
+    }
+
+    private func updateExpenses() {
+        totalLabel.text = getTotal()
+        let rows = kindTableView.numberOfRows(inSection: 0)
+        for i in 0..<rows {
+            (kindTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? ExpenseKindCell)?.updateTotal(expenses)
         }
     }
 
-    private func updateTotalLabel() {
-        totalLabel.text = getTotal()
-    }
-
-    private func saveExpenses() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(expenses, toFile: Expense.ArchiveURL.path)
+    private func save() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(expenses, toFile: Expense.ArchiveURL.path) &&
+                               NSKeyedArchiver.archiveRootObject(kinds, toFile: ExpenseKind.ArchiveURL.path)
         if isSuccessfulSave {
             os_log("Expenses successfully saved.", log: OSLog.default, type: .debug)
         } else {
@@ -101,10 +104,33 @@ class ViewController: UIViewController {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Expense.ArchiveURL.path) as? [Expense]
     }
 
+    private func loadExpenseKinds() -> [ExpenseKind]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: ExpenseKind.ArchiveURL.path) as? [ExpenseKind]
+    }
+
     @IBAction func clearExpenses(_ sender: Any) {
         expenses.removeAll()
-        saveExpenses()
-        updateTotalLabel()
+        save()
+        updateExpenses()
     }
+
+    //Mark: table
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return kinds.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseKindCell", for: indexPath) as? ExpenseKindCell else {fatalError()}
+
+        cell.initData(kinds[indexPath.row], expenses)
+
+        return cell
+    }
+
 }
 
