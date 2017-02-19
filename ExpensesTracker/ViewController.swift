@@ -16,6 +16,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var kindTableView: UITableView!
     
+    @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
+    
     var expenses = [Expense]()
     var kinds = [ExpenseKind]()
 
@@ -38,6 +40,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         kindTableView.delegate = self
         kindTableView.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
     }
 
     override func viewDidLayoutSubviews() {
@@ -179,5 +184,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
 
+    // MARK: - keyboard
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    func keyboardWillShow(_ notification: NSNotification) {
+        guard let cell = kindTableView.cellForRow(at: IndexPath(row: kinds.count, section: 0)) as? NewKindCell,
+              let info = notification.userInfo,
+              let keyboardHeight = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
+                else {
+            return
+        }
+
+        let textField = cell.textField!
+        let textFieldFrame = textField.frame
+        let textFieldLowestPoint = self.view.convert(textFieldFrame.origin, from: textField).y + textFieldFrame.height
+        let totalHeight = self.view.frame.height
+
+        let diff = totalHeight - textFieldLowestPoint - keyboardHeight
+
+        if (diff < 0) {
+            self.view.frame.origin.y = diff-20
+        }
+    }
+
+    func keyboardWillHide(_ sender: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
 }
 
