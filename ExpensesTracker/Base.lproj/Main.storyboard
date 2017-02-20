@@ -29,7 +29,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPS-AA-BCq">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPS-AA-BCq">
                                 <rect key="frame" x="137" y="518" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Clear"/>
@@ -105,6 +105,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ixm-0f-hzb"/>
                     <connections>
+                        <outlet property="clearButton" destination="zPS-AA-BCq" id="X54-OY-T7g"/>
                         <outlet property="kindTableView" destination="7nv-19-MwV" id="wJ1-k7-dJY"/>
                         <outlet property="totalLabel" destination="KJ2-sz-oSO" id="Zk3-bG-CTg"/>
                     </connections>

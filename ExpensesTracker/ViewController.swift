@@ -13,9 +13,8 @@ import os.log
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var totalLabel: UILabel!
-    
     @IBOutlet weak var kindTableView: UITableView!
-    
+    @IBOutlet weak var clearButton: UIButton!    
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
     var expenses = [Expense]()
@@ -58,17 +57,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - Actions
     @IBAction func editTable(_ sender: UILongPressGestureRecognizer?) {
         if (sender?.state == .began) {
-            let isEditing = kindTableView.isEditing
-            kindTableView.setEditing(!isEditing, animated: true)
+            let isEditing = !kindTableView.isEditing
+            kindTableView.setEditing(isEditing, animated: true)
             kindTableView.beginUpdates()
             let paths = [IndexPath(row: kinds.count, section: 0)]
             if (isEditing) {
                 kindTableView.insertRows(at: paths, with: .automatic)
-
             } else {
                 kindTableView.deleteRows(at: paths, with: .automatic)
             }
             kindTableView.endUpdates()
+
+            clearButton.isHidden = !isEditing
+            for i in 0..<kinds.count {
+                (kindTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? ExpenseKindCell)?.totalLabel.isHidden = isEditing
+            }
         }
     }
   
@@ -148,7 +151,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return kindTableView.isEditing ? kinds.count : kinds.count + 1
+        return kindTableView.isEditing ? kinds.count + 1: kinds.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
