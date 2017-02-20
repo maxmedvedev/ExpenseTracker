@@ -13,7 +13,7 @@ import os.log
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var totalLabel: UILabel!
-    @IBOutlet weak var kindTableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var clearButton: UIButton!    
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
@@ -37,8 +37,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         updateExpenses()
 
-        kindTableView.delegate = self
-        kindTableView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
@@ -57,20 +57,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - Actions
     @IBAction func editTable(_ sender: UILongPressGestureRecognizer?) {
         if (sender?.state == .began) {
-            let isEditing = !kindTableView.isEditing
-            kindTableView.setEditing(isEditing, animated: true)
-            kindTableView.beginUpdates()
+            let isEditing = !tableView.isEditing
+            tableView.setEditing(isEditing, animated: true)
+            tableView.beginUpdates()
             let paths = [IndexPath(row: kinds.count, section: 0)]
             if (isEditing) {
-                kindTableView.insertRows(at: paths, with: .automatic)
+                tableView.insertRows(at: paths, with: .automatic)
             } else {
-                kindTableView.deleteRows(at: paths, with: .automatic)
+                tableView.deleteRows(at: paths, with: .automatic)
             }
-            kindTableView.endUpdates()
+            tableView.endUpdates()
 
             clearButton.isHidden = !isEditing
             for i in 0..<kinds.count {
-                (kindTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? ExpenseKindCell)?.totalLabel.isHidden = isEditing
+                (tableView.cellForRow(at: IndexPath(row: i, section: 0)) as? ExpenseKindCell)?.totalLabel.isHidden = isEditing
             }
         }
     }
@@ -113,7 +113,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         totalLabel.text = getTotal()
         let rows = kinds.count
         for i in 0..<rows {
-            (kindTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? ExpenseKindCell)?.updateTotal(expenses)
+            (tableView.cellForRow(at: IndexPath(row: i, section: 0)) as? ExpenseKindCell)?.updateTotal(expenses)
         }
     }
 
@@ -140,7 +140,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         kinds.removeAll()
         kinds.append(contentsOf: ExpenseKind.getDefaultKinds())
         save()
-        kindTableView.reloadData()
+        tableView.reloadData()
         updateExpenses()
     }
 
@@ -151,7 +151,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return kindTableView.isEditing ? kinds.count + 1: kinds.count
+        return tableView.isEditing ? kinds.count + 1: kinds.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -183,7 +183,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if (editingStyle == .delete) {
             kinds.remove(at: indexPath.row)
             save()
-            kindTableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 
@@ -193,7 +193,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func keyboardWillShow(_ notification: NSNotification) {
-        guard let cell = kindTableView.cellForRow(at: IndexPath(row: kinds.count, section: 0)) as? NewKindCell,
+        guard let cell = tableView.cellForRow(at: IndexPath(row: kinds.count, section: 0)) as? NewKindCell,
               let info = notification.userInfo,
               let keyboardHeight = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
                 else {

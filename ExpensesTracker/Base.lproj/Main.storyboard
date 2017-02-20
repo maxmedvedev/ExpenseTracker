@@ -106,7 +106,7 @@
                     <navigationItem key="navigationItem" id="Ixm-0f-hzb"/>
                     <connections>
                         <outlet property="clearButton" destination="zPS-AA-BCq" id="X54-OY-T7g"/>
-                        <outlet property="kindTableView" destination="7nv-19-MwV" id="wJ1-k7-dJY"/>
+                        <outlet property="tableView" destination="7nv-19-MwV" id="wJ1-k7-dJY"/>
                         <outlet property="totalLabel" destination="KJ2-sz-oSO" id="Zk3-bG-CTg"/>
                     </connections>
                 </viewController>
@@ -132,26 +132,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y2W-yU-C2K">
-                                <rect key="frame" x="16" y="154" width="288" height="30"/>
+                                <rect key="frame" x="16" y="110" width="288" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="0CQ-9r-nig">
-                                <rect key="frame" x="0.0" y="192" width="320" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <date key="date" timeIntervalSinceReferenceDate="505558002.18559498">
-                                    <!--2017-01-08 08:46:42 +0000-->
-                                </date>
-                            </datePicker>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter expense" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UIc-NR-pWy">
-                                <rect key="frame" x="82" y="116" width="157" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter expense" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UIc-NR-pWy">
+                                <rect key="frame" x="82" y="72" width="157" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="0CQ-9r-nig">
+                                <rect key="frame" x="0.0" y="148" width="320" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="505558002.18559498">
+                                    <!--2017-01-08 08:46:42 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

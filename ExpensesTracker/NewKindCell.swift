@@ -21,7 +21,7 @@ class NewKindCell: UITableViewCell {
 
         viewController.kinds.append(newKind)
 
-        let table = viewController.kindTableView!
+        let table = viewController.tableView!
         table.beginUpdates()
         table.insertRows(at: [IndexPath(row: count, section: 0)], with: .automatic)
         table.endUpdates()
