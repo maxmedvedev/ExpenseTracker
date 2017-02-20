@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 
 class ExpenseKindCell: UITableViewCell {
-    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var totalLabel: MoneyLabel!
     @IBOutlet weak var button: ExpenseKindButton!
 
     var kind: ExpenseKind!
@@ -22,7 +22,7 @@ class ExpenseKindCell: UITableViewCell {
 
     func updateTotal(_ expenses: [Expense]) {
         let total = expenses.reduce(0) { result, expense in expense.kind == self.kind.index ? result + expense.value : result }
-        totalLabel.text = total.description
+        totalLabel.setAmount(x: total)
     }
 }
 

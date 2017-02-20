@@ -12,7 +12,7 @@ import os.log
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var totalLabel: MoneyLabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var clearButton: UIButton!    
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
@@ -48,8 +48,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLayoutSubviews()
     }
 
-    private func getTotal() -> String {
-        return expenses.reduce(0) { result, expense in result + expense.value }.description
+    private func getTotal() -> Double {
+        return expenses.reduce(0) { result, expense in result + expense.value }
     }
   
     // MARK: - Navigation
@@ -87,7 +87,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     private func updateExpenses() {
-        totalLabel.text = getTotal()
+        totalLabel.setAmount(x: getTotal())
         let rows = kinds.count
         for i in 0..<rows {
             getExpenseKindCell(at: i)?.updateTotal(expenses)

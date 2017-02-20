@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		40505191614FD4097B17F79E /* ExpenseKindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4050524EFBE1C23C590E5629 /* ExpenseKindCell.swift */; };
 		405059A0270FAA6A6EB3FA4D /* ExpenseKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4050585C6E5EC1EF21E953F3 /* ExpenseKind.swift */; };
+		40505AC450A0931D0D2CBD0E /* MoneyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40505DE746EC5B6B86AB84A5 /* MoneyLabel.swift */; };
 		A216304B1E224ED400CD1B62 /* NewExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A216304A1E224ED400CD1B62 /* NewExpenseViewController.swift */; };
 		A260958E1E3CEC5900F349FE /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260958D1E3CEC5900F349FE /* Expense.swift */; };
 		A26B210F1E5A2AF6006DC08C /* NewKindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26B210E1E5A2AF6006DC08C /* NewKindCell.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		4050524EFBE1C23C590E5629 /* ExpenseKindCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseKindCell.swift; sourceTree = "<group>"; };
 		4050585C6E5EC1EF21E953F3 /* ExpenseKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseKind.swift; sourceTree = "<group>"; };
+		40505DE746EC5B6B86AB84A5 /* MoneyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyLabel.swift; sourceTree = "<group>"; };
 		A216304A1E224ED400CD1B62 /* NewExpenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewExpenseViewController.swift; sourceTree = "<group>"; };
 		A260958D1E3CEC5900F349FE /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		A26B210E1E5A2AF6006DC08C /* NewKindCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewKindCell.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				4050585C6E5EC1EF21E953F3 /* ExpenseKind.swift */,
 				A26B210E1E5A2AF6006DC08C /* NewKindCell.swift */,
 				4050524EFBE1C23C590E5629 /* ExpenseKindCell.swift */,
+				40505DE746EC5B6B86AB84A5 /* MoneyLabel.swift */,
 			);
 			path = ExpensesTracker;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				A26B210F1E5A2AF6006DC08C /* NewKindCell.swift in Sources */,
 				405059A0270FAA6A6EB3FA4D /* ExpenseKind.swift in Sources */,
 				40505191614FD4097B17F79E /* ExpenseKindCell.swift in Sources */,
+				40505AC450A0931D0D2CBD0E /* MoneyLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
