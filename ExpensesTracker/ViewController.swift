@@ -51,29 +51,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private func getTotal() -> String {
         return expenses.reduce(0) { result, expense in result + expense.value }.description
     }
-
-    var pressCounter = 0
-
-    // MARK: - Actions
-    @IBAction func editTable(_ sender: UILongPressGestureRecognizer?) {
-        if (sender?.state == .began) {
-            let isEditing = !tableView.isEditing
-            tableView.setEditing(isEditing, animated: true)
-            tableView.beginUpdates()
-            let paths = [IndexPath(row: kinds.count, section: 0)]
-            if (isEditing) {
-                tableView.insertRows(at: paths, with: .automatic)
-            } else {
-                tableView.deleteRows(at: paths, with: .automatic)
-            }
-            tableView.endUpdates()
-
-            clearButton.isHidden = !isEditing
-            for i in 0..<kinds.count {
-                (tableView.cellForRow(at: IndexPath(row: i, section: 0)) as? ExpenseKindCell)?.totalLabel.isHidden = isEditing
-            }
-        }
-    }
   
     // MARK: - Navigation
 
@@ -113,7 +90,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         totalLabel.text = getTotal()
         let rows = kinds.count
         for i in 0..<rows {
-            (tableView.cellForRow(at: IndexPath(row: i, section: 0)) as? ExpenseKindCell)?.updateTotal(expenses)
+            getExpenseKindCell(at: i)?.updateTotal(expenses)
         }
     }
 
@@ -145,6 +122,34 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     // MARK: - table
+
+    @IBAction func editTable(_ sender: UILongPressGestureRecognizer?) {
+        if (sender?.state == .began) {
+            let isEditing = !tableView.isEditing
+            tableView.setEditing(isEditing, animated: true)
+            tableView.beginUpdates()
+            let paths = [IndexPath(row: kinds.count, section: 0)]
+            if (isEditing) {
+                tableView.insertRows(at: paths, with: .automatic)
+            } else {
+                tableView.deleteRows(at: paths, with: .automatic)
+            }
+            tableView.endUpdates()
+
+            clearButton.isHidden = !isEditing
+            for i in 0..<kinds.count {
+                getExpenseKindCell(at:i)?.totalLabel.isHidden = isEditing
+            }
+        }
+    }
+
+    private func getCell(at i: Int)-> Any? {
+        return tableView.cellForRow(at: IndexPath(row: i, section: 0))
+    }
+
+    private func getExpenseKindCell(at i: Int) -> ExpenseKindCell? {
+        return getCell(at:i) as? ExpenseKindCell
+    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -193,7 +198,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func keyboardWillShow(_ notification: NSNotification) {
-        guard let cell = tableView.cellForRow(at: IndexPath(row: kinds.count, section: 0)) as? NewKindCell,
+        guard let cell = getCell(at: kinds.count) as? NewKindCell,
               let info = notification.userInfo,
               let keyboardHeight = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
                 else {
