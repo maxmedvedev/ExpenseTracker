@@ -20,20 +20,20 @@ class NewExpenseViewController: UIViewController {
     private var expense: Expense?
 
     override func viewDidLoad() {
-        
+
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+
         expenseTextField.becomeFirstResponder()
-        
+
     }
 
     override func didReceiveMemoryWarning() {
-        
+
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     // This method lets you configure a view controller before it's presented.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -42,9 +42,9 @@ class NewExpenseViewController: UIViewController {
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-    
+
     @IBAction func save(_ sender: Any) {
-        
+
     }
 
     func setKind(_ kind: Int) {

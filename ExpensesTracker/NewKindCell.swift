@@ -25,7 +25,7 @@ class NewKindCell: UITableViewCell {
         table.beginUpdates()
         table.insertRows(at: [IndexPath(row: count, section: 0)], with: .automatic)
         table.endUpdates()
-        
+
         textField.text = ""
         textField.resignFirstResponder()
     }

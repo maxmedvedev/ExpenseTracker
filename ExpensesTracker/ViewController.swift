@@ -14,9 +14,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var totalLabel: MoneyLabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var clearButton: UIButton!    
+    @IBOutlet weak var clearButton: UIButton!
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
-    
+
     var expenses = [Expense]()
     var kinds = [ExpenseKind]()
 
@@ -39,9 +39,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         tableView.delegate = self
         tableView.dataSource = self
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
+
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil);
     }
 
     override func viewDidLayoutSubviews() {
@@ -51,7 +51,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private func getTotal() -> Double {
         return expenses.reduce(0) { result, expense in result + expense.value }
     }
-  
+
     // MARK: - Navigation
 
     @IBAction func unwindToMainScene(sender: UIStoryboardSegue) {
@@ -138,17 +138,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
             clearButton.isHidden = !isEditing
             for i in 0..<kinds.count {
-                getExpenseKindCell(at:i)?.totalLabel.isHidden = isEditing
+                getExpenseKindCell(at: i)?.totalLabel.isHidden = isEditing
             }
         }
     }
 
-    private func getCell(at i: Int)-> Any? {
+    private func getCell(at i: Int) -> Any? {
         return tableView.cellForRow(at: IndexPath(row: i, section: 0))
     }
 
     private func getExpenseKindCell(at i: Int) -> ExpenseKindCell? {
-        return getCell(at:i) as? ExpenseKindCell
+        return getCell(at: i) as? ExpenseKindCell
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -156,7 +156,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView.isEditing ? kinds.count + 1: kinds.count
+        return tableView.isEditing ? kinds.count + 1 : kinds.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -164,7 +164,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewKindCell", for: indexPath) as? NewKindCell else {
                 fatalError()
             }
-            
+
             cell.viewController = self
 
             return cell
@@ -213,7 +213,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let diff = totalHeight - textFieldLowestPoint - keyboardHeight
 
         if (diff < 0) {
-            self.view.frame.origin.y = diff-20
+            self.view.frame.origin.y = diff - 20
         }
     }
 

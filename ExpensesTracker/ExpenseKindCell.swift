@@ -26,6 +26,6 @@ class ExpenseKindCell: UITableViewCell {
     }
 }
 
-class ExpenseKindButton : UIButton {
+class ExpenseKindButton: UIButton {
     var kind: Int!
 }

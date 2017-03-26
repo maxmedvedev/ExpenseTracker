@@ -15,7 +15,7 @@ class ExpenseKind: NSObject, NSCoding {
     let name: String
     let index: Int
 
-    init(name:String, index:Int){
+    init(name: String, index: Int) {
         self.name = name
         self.index = index
     }
@@ -32,7 +32,7 @@ class ExpenseKind: NSObject, NSCoding {
         aCoder.encode(index, forKey: Keys.index)
     }
 
-    static func getDefaultKinds()->[ExpenseKind] {
+    static func getDefaultKinds() -> [ExpenseKind] {
         return [ExpenseKind(name: "Food", index: 0),
                 ExpenseKind(name: "Eating out", index: 1),
                 ExpenseKind(name: "Sports", index: 2),
